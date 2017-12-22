@@ -2,6 +2,7 @@
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "Master.cshtml";
+    string[] days = {"Monday", "Tuesday" , "Wednesday", "Thursday", "Friday"};
 }
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
@@ -34,122 +35,28 @@
         </div> <!-- .timeline -->
         <div class="events">
             <ul>
-              <li class="events-group">
-                   <div class="top-info"><span>Monday</span></div>
-                   <ul>
-                       @foreach (var menuItem in CurrentPage.Children)
-                       {
-                        <li class="single-event"
-                            data-start="@menuItem.StartTime"
-                            data-end="@menuItem.EndTime"
-                            data-content="@menuItem.Url"
-                            data-event="event-1">
-                            <a href="#0">
-                                <em class="event-name">@menuItem.Description</em>
-                            </a>
-                        </li>
-                       }
-                   </ul>
-               </li>
-              <li class="events-group">
-                   <div class="top-info"><span>Tuesday</span></div>
-                   <ul>
-                       <li class="single-event" 
-                           data-start="10:00"
-                           data-end="11:00"
-                           data-content="eventrowingworkout" 
-                           data-event="event-2">
-                           <a href="#0">
-                               <em class="event-name">Rowing Workout</em>
-                           </a>
-                       </li>
-                       <li class="single-event" data-start="11:30"data-end="13:00"data-content="eventrestorativeyoga" data-event="event-4">
-                           <a href="#0">
-                               <em class="event-name">Restorative Yoga</em>
-                           </a>
-                       </li>
-                       <li class="single-event" data-start="13:30"data-end="15:00"data-content="eventabscircuit" data-event="event-1">
-                           <a href="#0">
-                               <em class="event-name">Abs Circuit</em>
-                           </a>
-                       </li>
-                       <li class="single-event"data-start="15:45"data-end="16:45"data-content="eventyoga-1"data-event="event-3">
-                           <a href="#0">
-                               <em class="event-name">Yoga Level 1</em>
-                           </a>
-                       </li>
-                   </ul>
-               </li>
-              <li class="events-group">
-                   <div class="top-info"><span>Wednesday</span></div>
-                   <ul>
-                       <li class="single-event" data-start="09:00"data-end="10:15"data-content="eventrestorativeyoga"data-event="event-4">
-                           <a href="#0">
-                               <em class="event-name">Restorative Yoga</em>
-                           </a>
-                       </li>
-                       <li class="single-event"data-start="10:45"data-end="11:45"data-content="eventyoga-1"data-event="event-3">
-                           <a href="#0">
-                               <em class="event-name">Yoga Level 1</em>
-                           </a>
-                       </li>
-                       <li class="single-event" data-start="12:00"data-end="13:45"data-content="eventrowingworkout"data-event="event-2">
-                           <a href="#0">
-                               <em class="event-name">Rowing Workout</em>
-                           </a>
-                       </li>
-                       <li class="single-event"data-start="13:45"data-end="15:00"data-content="eventyoga-1"data-event="event-3">
-                           <a href="#0">
-                               <em class="event-name">Yoga Level 1</em>
-                           </a>
-                       </li>
-                   </ul>
-               </li>
-              <li class="events-group">
-                   <div class="top-info"><span>Thursday</span></div>
-                   <ul>
-                       <li class="single-event" data-start="09:30"data-end="10:30"data-content="eventabscircuit" data-event="event-1">
-                           <a href="#0">
-                               <em class="event-name">Abs Circuit</em>
-                           </a>
-                       </li>
-                       <li class="single-event" data-start="12:00"data-end="13:45"data-content="eventrestorativeyoga"data-event="event-4">
-                           <a href="#0">
-                               <em class="event-name">Restorative Yoga</em>
-                           </a>
-                       </li>
-                       <li class="single-event" data-start="15:30"data-end="16:30"data-content="eventabscircuit" data-event="event-1">
-                           <a href="#0">
-                               <em class="event-name">Abs Circuit</em>
-                           </a>
-                       </li>
-                       <li class="single-event" data-start="17:00"data-end="18:30"data-content="eventrowingworkout"data-event="event-2">
-                           <a href="#0">
-                               <em class="event-name">Rowing Workout</em>
-                           </a>
-                       </li>
-                   </ul>
-               </li>
-              <li class="events-group">
-                            <div class="top-info"><span>Friday</span></div>
-                            <ul>
-                                <li class="single-event" data-start="10:00" data-end="11:00" data-content="event-rowing-workout" data-event="event-2">
-                                    <a href="#0">
-                                        <em class="event-name">Rowing Workout</em>
-                                    </a>
-                                </li>
-                                <li class="single-event" data-start="12:30" data-end="14:00" data-content="event-abs-circuit" data-event="event-1">
-                                    <a href="#0">
-                                        <em class="event-name">Abs Circuit</em>
-                                    </a>
-                                </li>
-                                <li class="single-event" data-start="15:45" data-end="16:45" data-content="event-yoga-1" data-event="event-3">
-                                    <a href="#0">
-                                        <em class="event-name">Yoga Level 1</em>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                @foreach(var day in days)
+                {
+                    <li class="events-group">
+                        <div class="top-info"><span>@day</span></div>
+                        <ul>
+                            @foreach (var menuItem in CurrentPage.Children)
+                            {
+                            if (menuItem.WeekDay != day){continue;}
+                            <li class="single-event"
+                                data-start="@menuItem.StartTime"
+                                data-end="@menuItem.EndTime"
+                                data-content="@menuItem.Url"
+                                data-event="event-1">
+                                <a href="#0">
+                                    <em class="event-name">@menuItem.Description</em>
+                                    <em>@menuItem.WeekDay</em>
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </li>
+                }
             </ul>
                 </div>
                 <div class="event-modal">
