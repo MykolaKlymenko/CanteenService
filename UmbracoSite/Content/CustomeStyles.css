@@ -1,0 +1,8 @@
+﻿body {
+}
+
+a.product-grid__item
+{
+    margin: 5px;
+    max-width: 30%;
+}
