@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Menu>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+<div class="event-info">
+	    @foreach(DishPicker dish in Model.Content.Dishes)
+	    {
+	    	<div class="row menu-row">
+	    <div class="product-grid__item col-md-5" style="background-image: url('@(dish.Url + "?width=150&height=100")'); width: 150px; height: 100px;">
+                    </div>
+                                            <div class="col-md-5">
+                            <p>@dish.DishName</p>
+                            <p>@dish.Price</p>
+                        </div>
+	     </div>
+	    }
+</div>
