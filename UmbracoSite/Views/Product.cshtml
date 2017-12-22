@@ -18,7 +18,10 @@
                 <h1>@Model.Content.ProductName</h1>
                 <div class="product-teaser">@Model.Content.Description</div>
                 <div class="product-button">
-                    <a href="@Model.Content.MenuSchedule.Url" class="button button--border--solid">Buy</a>
+                    @if (Model.Content.MenuSchedule != null)
+                    {
+                    <a href="@Model.Content.MenuSchedule.Url" class="button button--border--solid">View Menu Schedule</a>
+                    }
                 </div>
                 <div class="product-advantages">
                     @if (Model.Content.Features != null)
@@ -34,11 +37,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<section class="section section--sand">
-    <div class="container">
-        <!-- todo: Check if grid is empty via a property value converter -->
-        @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
     </div>
 </section>

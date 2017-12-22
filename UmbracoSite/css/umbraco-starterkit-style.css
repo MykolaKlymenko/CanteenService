@@ -2897,3 +2897,8 @@ article {
         align-items: center
     }
 }
+
+.section--header{
+     min-height: 150px;
+    padding: 10px 40px;
+}

@@ -665,5 +665,9 @@ Main Components
 }
 
 .menu-row{
-	height: 150px;
+	height: 150px !important; // Because i don't care about your important
+}
+
+.menu-p{
+	margin:0 !important;
 }
