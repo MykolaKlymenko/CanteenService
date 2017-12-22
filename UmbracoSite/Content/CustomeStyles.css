@@ -6,3 +6,8 @@ a.product-grid__item
     margin: 5px;
     max-width: 30%;
 }
+
+.section
+{
+    padding-top: 30px;
+}
